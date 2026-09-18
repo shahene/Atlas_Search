@@ -9,17 +9,23 @@ def load_documents() -> list[dict]:
 
 
 def search(query: str) -> list[str]:
-    """Return startup names matching query by exact name or tag substring"""
-    result = []
+    """Return documents where the query appears in the title, body, or tags"""
+    normalized_query = query.lower().strip()
+    if not normalized_query:
+        return []
+    results = []
+
+    for document in load_documents():
+        searchable_text = " ".join (
+            [
+                document["title"],
+                document["body"],
+                " ".join(document["tags"])
+            ]
+        ).lower()
+
+        if normalized_query in searchable_text:
+            results.append(document)
     
-    for n in startups:
-        if n.lower() == query.lower():
-            result.append(n)
-            continue
-        for param in startups[n]:
-            if query.lower() in param.lower():
-                result.append(n)
-                break
-    
-    return result
+    return results
 
