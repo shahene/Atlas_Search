@@ -1,20 +1,15 @@
-startups = {
-        'Stripe': ['payments', 'infrastructure', 'fintech'],
-        'OpenAI': ['AI', 'LLM', 'Sam Altman'],
-        'Anthropic': ['AI', 'AI' 'LLM', 'AI Safety'],
-        'Datadog': ['API Observability', 'Infra'],
-        'Figma': ['Design', 'Browser'],
-        'SpaceX': ['Space', 'Rockets'],
-        'Scale AI': ['Datasets', 'Labeling'],
-        'Meta': ['Social Networks', 'Instagram', 'Facebook'],
-        'Anduril': ['War', 'Defense', 'AI'],
-        'Vercel': ['Deploy', 'Web'],
-        'Palantir': ['CIA', 'Gotham'],
-        'Nvidia': ['Chips', 'GPU', 'AI'],
-        'Apple': ['Steve Jobs', 'iPhone']
-    }
+import json
+from pathlib import Path
+
+DATA_PATH = Path(__file__).parent / "data" / "startups.json"
+
+def load_documents() -> list[dict]:
+    with open(DATA_PATH, "r") as f:
+        return json.load(f)
+
 
 def search(query: str) -> list[str]:
+    """Return startup names matching query by exact name or tag substring"""
     result = []
     
     for n in startups:
@@ -28,4 +23,3 @@ def search(query: str) -> list[str]:
     
     return result
 
-print(search('a'))

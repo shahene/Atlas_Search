@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "title": "Stripe",
+      "body": "Stripe builds payment infrastructure for the internet. Used by millions of businesses for online payments, billing, and fintech.",
+      "tags": ["payments", "infrastructure", "fintech"]
+    },
+    {
+      "id": 2,
+      "title": "OpenAI",
+      "body": "OpenAI develops artificial intelligence systems including large language models like GPT. Focus on AGI research and AI products.",
+      "tags": ["AI", "LLM", "Sam Altman"]
+    },
+    {
+      "id": 3,
+      "title": "Anthropic",
+      "body": "Anthropic is an AI safety company building reliable, interpretable AI systems including the Claude family of language models.",
+      "tags": ["AI", "LLM", "AI Safety"]
+    }
+  ]

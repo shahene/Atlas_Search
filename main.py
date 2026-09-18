@@ -9,3 +9,4 @@ async def root(query: str):
         "query": query,
         "results": result
         }
+        
