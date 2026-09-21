@@ -8,7 +8,7 @@ def load_documents() -> list[dict]:
         return json.load(f)
 
 
-def search(query: str) -> list[str]:
+def search(query: str) -> list[dict]:
     """Return documents where the query appears in the title, body, or tags"""
     normalized_query = query.lower().strip()
     if not normalized_query:
@@ -24,8 +24,10 @@ def search(query: str) -> list[str]:
             ]
         ).lower()
 
+
         if normalized_query in searchable_text:
             results.append(document)
+            print(document)
     
     return results
 
