@@ -1,0 +1,30 @@
+CREATE TABLE companies(
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
+    description TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+
+);
+
+CREATE TABLE documents(
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    company_id BIGINT NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
+    source TEXT NOT NULL,
+    source_url TEXT,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    published_at TIMESTAMPTZ,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE tags(
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE company_tags(
+    company_id BIGINT NOT NULL REFERENCES companies(id) on DELETE CASCADE,
+    tag_id BIGINT NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
+    PRIMARY KEY (company_id, tag_id)
+
+);
